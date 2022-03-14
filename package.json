@@ -3,11 +3,10 @@
   "name": "electron-umi",
   "version": "1.0.0",
   "scripts": {
-    "electron-start": "electron .",
-    "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:8000 && cross-env NODE_ENV=development electron public/main.js\"",
+    "electron-dev": "concurrently \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:9691 && cross-env NODE_ENV=development electron public/main.js\"",
     "electron-prod": "yarn build && cross-env NODE_ENV=production electron public/main.js",
     "dist-win64": "yarn build && electron-builder --win --x64",
-    "start": "umi dev",
+    "start": "cross-env PORT=9691 umi dev",
     "build": "umi build",
     "test": "umi test",
     "lint": "eslint {src,mock,tests}/**/*.{ts,tsx} --fix",
@@ -16,7 +15,7 @@
   "main": "build/main.js",
   "build": {
     "appId": "com.example.app",
-    "directories":{
+    "directories": {
       "output": "dist"
     },
     "files": [
@@ -39,6 +38,7 @@
     "cross-env": "^7.0.3",
     "electron": "^17.1.0",
     "electron-builder": "^22.14.13",
+    "electron-reload": "^2.0.0-alpha.1",
     "eslint": "^5.4.0",
     "eslint-config-umi": "^1.4.0",
     "eslint-plugin-flowtype": "^2.50.0",
